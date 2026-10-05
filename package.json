@@ -1,0 +1,18 @@
+{
+  "name": "codealpha_tasko",
+  "version": "1.0.0",
+  "description": "Project Management App for Code Alpha Intership",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "keywords": [
+    "Tasko"
+  ],
+  "author": "Harsh Rajput",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.9.9"
+  }
+}
