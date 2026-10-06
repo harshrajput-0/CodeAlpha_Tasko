@@ -1,7 +1,9 @@
 import express from "express";
+import { connectDB } from "./config/db.js";
 
 
 const app = express();
+connectDB();
 
 // Routes
 app.get("/get", (req, res) => {
