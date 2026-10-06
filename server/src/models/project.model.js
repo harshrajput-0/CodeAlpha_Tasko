@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-
 const projectSchema = new mongoose.Schema({
     projectTitle: {
         type: String,
@@ -13,15 +12,30 @@ const projectSchema = new mongoose.Schema({
         type: String,
     },
 
+    workspace: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Workspace",
+        required: true,
+        index: true,
+    },
+
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+    },
+
     projectLead: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     },
 
-    teamMembers: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-    }],
+    teamMembers: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+        }
+    ],
 
     priority: {
         type: String,
@@ -41,24 +55,18 @@ const projectSchema = new mongoose.Schema({
 
     endDate: {
         type: Date,
+        validate: {
+            validator: function (value) {
+                return !this.startDate || !value || value >= this.startDate;
+            },
+            message: "endDate cannot be before startDate",
+        },
     },
-
-    comments: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Comment",
-        }
-    ],
-
-    board: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Board",
-        }
-    ],
 
 }, {
     timestamps: true,
-})
+});
+
+projectSchema.index({ teamMembers: 1 });
 
 export const Project = mongoose.model("Project", projectSchema);

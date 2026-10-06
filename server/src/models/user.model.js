@@ -12,13 +12,15 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,
         lowercase: true,
+        trim: true,
         index: true,
     },
 
     password: {
         type: String,
         required: true,
-        min: [8, "Pasword must have at least 8 characters"],
+        minlength: [8, "Password must have at least 8 characters"],
+        select: false,
     },
 
     avatar: {
@@ -27,34 +29,10 @@ const userSchema = new mongoose.Schema({
 
     bio: {
         type: String,
+        maxlength: 300,
     },
-
-    workspace: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Workspace",
-        }
-    ],
-
-    projects: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Project",
-        }
-    ],
-
-    tasks: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Task",
-        }
-    ],
 }, {
     timestamps: true,
-})
-
-
-
-
+});
 
 export const User = mongoose.model("User", userSchema);

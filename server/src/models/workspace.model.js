@@ -6,27 +6,37 @@ const workspaceSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
+
     description: {
         type: String,
-        // maximum length 
+        maxlength: 500,
     },
-    users: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-        }
-    ],
-    projects: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Project",
-        }
-    ],
-    // slug optional 
 
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+    },
+
+    members: [
+        {
+            user: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User",
+                required: true,
+            },
+            role: {
+                type: String,
+                enum: ["admin", "member"],
+                default: "member",
+            },
+            _id: false,
+        }
+    ],
 }, {
     timestamps: true,
-})
+});
 
+workspaceSchema.index({ "members.user": 1 });
 
 export const Workspace = mongoose.model("Workspace", workspaceSchema);
