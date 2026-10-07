@@ -1,72 +1,74 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const projectSchema = new mongoose.Schema({
+const projectSchema = new mongoose.Schema(
+  {
     projectTitle: {
-        type: String,
-        required: true,
-        trim: true,
-        index: true,
+      type: String,
+      required: true,
+      trim: true,
+      index: true,
     },
 
     description: {
-        type: String,
+      type: String,
     },
 
     workspace: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Workspace",
-        required: true,
-        index: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Workspace',
+      required: true,
+      index: true,
     },
 
     createdBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
     },
 
     projectLead: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
     },
 
     teamMembers: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-        }
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+      },
     ],
 
     priority: {
-        type: String,
-        enum: ["Low", "Medium", "High"],
-        default: "Low",
+      type: String,
+      enum: ['Low', 'Medium', 'High'],
+      default: 'Low',
     },
 
     status: {
-        type: String,
-        enum: ["Not Started", "In Progress", "On Hold", "Completed"],
-        default: "Not Started",
+      type: String,
+      enum: ['Not Started', 'In Progress', 'On Hold', 'Completed'],
+      default: 'Not Started',
     },
 
     startDate: {
-        type: Date,
+      type: Date,
     },
 
     endDate: {
-        type: Date,
-        validate: {
-            validator: function (value) {
-                return !this.startDate || !value || value >= this.startDate;
-            },
-            message: "endDate cannot be before startDate",
+      type: Date,
+      validate: {
+        validator: function (value) {
+          return !this.startDate || !value || value >= this.startDate;
         },
+        message: 'endDate cannot be before startDate',
+      },
     },
-
-}, {
+  },
+  {
     timestamps: true,
-});
+  }
+);
 
 projectSchema.index({ teamMembers: 1 });
 
-export const Project = mongoose.model("Project", projectSchema);
+export const Project = mongoose.model('Project', projectSchema);

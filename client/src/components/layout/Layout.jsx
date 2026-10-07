@@ -1,8 +1,8 @@
-import { Header } from "./Header";
+import { Header } from './Header';
 // import { useState } from "react";
-import { Sidebar } from "./Sidebar";
+import { Sidebar } from './Sidebar';
 
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 
 export function Layout() {
   return (

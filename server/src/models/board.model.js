@@ -1,25 +1,28 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const boardSchema = new mongoose.Schema({
+const boardSchema = new mongoose.Schema(
+  {
     boardName: {
-        type: String,
-        required: true,
-        trim: true,
+      type: String,
+      required: true,
+      trim: true,
     },
 
     project: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Project",
-        required: true,
-        index: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Project',
+      required: true,
+      index: true,
     },
 
     createdBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
     },
-}, {
+  },
+  {
     timestamps: true,
-});
+  }
+);
 
-export const Board = mongoose.model("Board", boardSchema);
+export const Board = mongoose.model('Board', boardSchema);

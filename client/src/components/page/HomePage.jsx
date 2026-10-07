@@ -1,5 +1,5 @@
-import { InviteModal } from "../smaill-items/InviteModal";
-import { CreateProjectModal } from "../smaill-items/CreateProjectModal";
+import { InviteModal } from '../smaill-items/InviteModal';
+import { CreateProjectModal } from '../smaill-items/CreateProjectModal';
 
 export const HomePage = () => {
   return (

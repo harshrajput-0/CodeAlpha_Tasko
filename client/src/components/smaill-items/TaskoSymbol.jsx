@@ -1,10 +1,10 @@
-const PRIMARY = "var(--color-primary, var(--primary, currentColor))";
+const PRIMARY = 'var(--color-primary, var(--primary, currentColor))';
 const ON_PRIMARY =
-  "var(--color-primary-foreground, var(--primary-foreground, #fff))";
+  'var(--color-primary-foreground, var(--primary-foreground, #fff))';
 
 export function TaskoSymbol({
   size = 40,
-  title = "Tasko",
+  title = 'Tasko',
   decorative = false,
   className,
   ...props
@@ -17,7 +17,7 @@ export function TaskoSymbol({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
-      role={decorative ? undefined : "img"}
+      role={decorative ? undefined : 'img'}
       aria-hidden={decorative ? true : undefined}
       {...props}
     >

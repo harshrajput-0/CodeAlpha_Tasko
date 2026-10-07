@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 // import { TaskoLogo } from "../smaill-items/Tasko";
-import { SearchBar } from "../smaill-items/SearchBar";
-import { CreateButton } from "../smaill-items/Create";
+import { SearchBar } from '../smaill-items/SearchBar';
+import { CreateButton } from '../smaill-items/Create';
 
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -11,10 +11,10 @@ export const Header = () => {
       setScrolled(window.scrollY > 50);
     }
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -22,8 +22,8 @@ export const Header = () => {
     <header
       className={`sticky top-0 left-0 z-50 w-full transition-all duration-300 ${
         scrolled
-          ? "border-b bg-background/80 shadow-sm backdrop-blur-md"
-          : "bg-transparent"
+          ? 'border-b bg-background/80 shadow-sm backdrop-blur-md'
+          : 'bg-transparent'
       }`}
     >
       <div className="mx-auto flex h-16  items-center px-6">

@@ -5,9 +5,9 @@
 
 // import { AppSidebar } from "./components/layout/AppSidebar";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Layout } from "./components/layout/Layout";
-import { HomePage } from "./components/page/HomePage";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Layout } from './components/layout/Layout';
+import { HomePage } from './components/page/HomePage';
 
 function App() {
   return (

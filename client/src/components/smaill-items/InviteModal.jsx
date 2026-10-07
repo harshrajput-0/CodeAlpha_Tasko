@@ -1,4 +1,4 @@
-import { Mail, UserPlus } from "lucide-react";
+import { Mail, UserPlus } from 'lucide-react';
 
 import {
   Dialog,
@@ -7,10 +7,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 import {
   Select,
@@ -18,9 +18,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
 export function InviteModal() {
   const handleSubmit = (e) => {
@@ -44,7 +44,7 @@ export function InviteModal() {
           </DialogTitle>
 
           <DialogDescription>
-            Inviting to workspace:{" "}
+            Inviting to workspace:{' '}
             <span className="font-medium text-blue-600">TS Components</span>
           </DialogDescription>
         </DialogHeader>
@@ -77,7 +77,7 @@ export function InviteModal() {
               <SelectContent
                 position="popper"
                 style={{
-                  width: "var(--radix-select-trigger-width)",
+                  width: 'var(--radix-select-trigger-width)',
                 }}
               >
                 <SelectItem value="member">Member</SelectItem>

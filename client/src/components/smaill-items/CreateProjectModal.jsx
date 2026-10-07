@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 // import { CalendarDays, ChevronDown } from "lucide-react";
 
 import {
@@ -8,12 +8,12 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
 
 import {
   Select,
@@ -21,10 +21,10 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
 
 export function CreateProjectModal() {
-  const [members, setMembers] = useState(["arcadem0000@gmail.com"]);
+  const [members, setMembers] = useState(['arcadem0000@gmail.com']);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,7 +43,7 @@ export function CreateProjectModal() {
           <DialogTitle className="text-xl">Create New Project</DialogTitle>
 
           <DialogDescription>
-            In workspace:{" "}
+            In workspace:{' '}
             <span className="font-medium text-blue-600">TS Components</span>
           </DialogDescription>
         </DialogHeader>

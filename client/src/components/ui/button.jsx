@@ -1,11 +1,11 @@
-import { Button as ButtonPrimitive } from "@base-ui/react/button";
-import { buttonVariants } from "./buttonVariant";
-import { cn } from "cn";
+import { Button as ButtonPrimitive } from '@base-ui/react/button';
+import { buttonVariants } from './buttonVariant';
+import { cn } from 'cn';
 
 export function Button({
   className,
-  variant = "default",
-  size = "default",
+  variant = 'default',
+  size = 'default',
   ...props
 }) {
   return (

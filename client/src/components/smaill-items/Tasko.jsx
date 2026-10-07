@@ -1,4 +1,4 @@
-import { TaskoSymbol } from "./TaskoSymbol";
+import { TaskoSymbol } from './TaskoSymbol';
 
 export function TaskoLogo({
   size = 40,
@@ -11,8 +11,8 @@ export function TaskoLogo({
     <span
       className={className}
       style={{
-        display: "inline-flex",
-        alignItems: "center",
+        display: 'inline-flex',
+        alignItems: 'center',
         gap: size * 0.19,
         lineHeight: 1,
         ...style,
@@ -25,8 +25,8 @@ export function TaskoLogo({
         style={{
           fontSize: size * 0.55,
           fontWeight: 500,
-          letterSpacing: "-0.026em",
-          color: "inherit",
+          letterSpacing: '-0.026em',
+          color: 'inherit',
         }}
       >
         Tasko
