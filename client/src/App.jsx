@@ -8,6 +8,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { HomePage } from './components/page/HomePage';
+import { Register } from './components/page/auth/RegisterPage';
+import { Login } from './components/page/auth/LoginPage';
+import { ChangePassword } from './components/page/auth/ChangePassword';
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/change-password" element={<ChangePassword />} />
           </Route>
         </Routes>
       </BrowserRouter>

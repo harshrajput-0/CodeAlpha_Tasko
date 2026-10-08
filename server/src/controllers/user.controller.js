@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken';
 
-import { asyncHandler } from '../utils/asyncHandler';
-import { ApiError } from '../utils/ApiError';
-import { ApiResponse } from '../utils/ApiResponse';
+import { asyncHandler } from '../utils/asyncHandler.js';
+import { ApiError } from '../utils/ApiError.js';
+import { ApiResponse } from '../utils/ApiResponse.js';
 
 import { User } from '../models/user.model.js';
-import { generateAccessAndRefereshTokens } from '../utils/generateTokens.js';
+import { generateAccessAndRefreshTokens } from '../utils/generateTokens.js';
 import { OPTIONS } from '../constants.js';
 
 // ======| REGISTER USER |--------------------------------------
@@ -32,7 +32,7 @@ export const registerUser = asyncHandler(async (req, res) => {
 
   return res
     .status(201)
-    .json(new ApiResponse(200, user, 'User registered successfully'));
+    .json(new ApiResponse(201, user, 'User registered successfully'));
 });
 
 // ======| LOGIN USER |--------------------------------------
@@ -60,15 +60,18 @@ export const loginUser = asyncHandler(async (req, res) => {
   }
 
   // Generate Token
-  const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(
+  const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
     user._id
   );
+
+  // To avoid password hash exposure
+  const loggedInUser = await User.findById(user._id);
 
   return res
     .status(200)
     .cookie('accessToken', accessToken, OPTIONS)
     .cookie('refreshToken', refreshToken, OPTIONS)
-    .json(new ApiResponse(200, user, 'User logged In Successfully'));
+    .json(new ApiResponse(200, loggedInUser, 'User logged In Successfully'));
 });
 
 // ======| LOGOUT USER |--------------------------------------
@@ -123,8 +126,8 @@ export const refreshAccessToken = asyncHandler(async (req, res) => {
       throw new ApiError(401, 'Refresh token is either expired or used');
     }
 
-    const { accessToken, newRefreshToken } =
-      await generateAccessAndRefereshTokens(user._id);
+    const { accessToken, refreshToken: newRefreshToken } =
+      await generateAccessAndRefreshTokens(user._id);
 
     return res
       .status(200)
@@ -146,7 +149,11 @@ export const refreshAccessToken = asyncHandler(async (req, res) => {
 export const changePassword = asyncHandler(async (req, res) => {
   const { oldPassword, newPassword } = req.body;
 
-  const user = await User.findById(req.user._id);
+  if (!oldPassword || !newPassword) {
+    throw new ApiError(400, 'Old password and new password are required');
+  }
+
+  const user = await User.findById(req.user._id).select("+password");
   const isPasswordCorrect = await user.isPasswordCorrect(oldPassword);
 
   if (!isPasswordCorrect) {
@@ -154,7 +161,7 @@ export const changePassword = asyncHandler(async (req, res) => {
   }
 
   user.password = newPassword;
-  await user.save({ validateBeforeSave: false });
+  await user.save();
 
   return res
     .status(200)
@@ -166,7 +173,7 @@ export const updateProfile = asyncHandler(async (req, res) => {
   const { fullName, bio, avatar } = req.body;
 
   const user = await User.findById(req.user._id);
-  if (name !== undefined) user.fullName = fullName;
+  if (fullName !== undefined) user.fullName = fullName;
   if (avatar !== undefined) user.avatar = avatar;
   if (bio !== undefined) user.bio = bio;
 
