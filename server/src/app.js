@@ -26,7 +26,11 @@ const API_PREFIX = "/api/v1";
 
 app.use(`${API_PREFIX}/users`, userRouter);
 
-
+app.get('/get', (req, res) => {
+  res.json({
+    message: 'Project API is running',
+  });
+});
 
 
 app.use((err, req, res, next) => {
