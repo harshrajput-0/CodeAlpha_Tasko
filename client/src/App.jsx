@@ -11,6 +11,7 @@ import { HomePage } from './components/page/HomePage';
 import { Register } from './components/page/auth/RegisterPage';
 import { Login } from './components/page/auth/LoginPage';
 import { ChangePassword } from './components/page/auth/ChangePassword';
+import { EditProfile } from './components/page/auth/EditProfilePage';
 
 function App() {
   return (
@@ -18,10 +19,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<EditProfile />} />
+            <Route path="/dashboard" element={<HomePage />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/change-password" element={<ChangePassword />} />
+            <Route path="/profile" element={<EditProfile />} />
           </Route>
         </Routes>
       </BrowserRouter>
